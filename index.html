@@ -3,615 +3,467 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Haru |  Blockbench Animator</title>
+    <title>Haru | 3D Artist & Animator</title>
 
+    <meta name="description"
+        content="Portfolio of Haru, 3D Artist specialized in Minecraft modeling and animation.">
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
-<script type="module"
-src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-</script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
 </head>
 
-
 <body>
 
+    <div class="background"></div>
 
-<div class="background"></div>
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
+    <aside class="sidebar">
 
+        <div class="logo">
+            HARU
+        </div>
 
-<aside class="sidebar">
+        <nav>
 
+            <a href="#work">Work</a>
 
-<div class="logo">
-HARU
-</div>
+            <a href="#animation">Animation</a>
 
+            <a href="#models">Models</a>
 
+            <a href="#about">About</a>
 
-<nav>
+            <a href="#contact">Contact</a>
 
-<a href="#work">Work</a>
+        </nav>
 
-<a href="#animation">Animation</a>
+        <div class="status">
 
-<a href="#models">Models</a>
+            3D Artist
+            <br>
+            Animator
 
-<a href="#about">About</a>
+        </div>
 
-<a href="#contact">Contact</a>
+    </aside>
 
 
-</nav>
 
+    <main>
 
+        <!-- =========================
+             HERO
+        ========================== -->
 
-<div class="status">
+        <section class="hero">
 
-3D Artist
-<br>
-Animator
+            <div class="hero-content">
 
-</div>
+                <span class="hero-tag">
+                    Minecraft • 3D Artist • Animator
+                </span>
 
+                <h1>
 
-</aside>
+                    Creating
+                    <br>
+                    Digital Worlds
 
+                </h1>
 
+                <p>
 
+                    I create creatures, bosses, characters and animated
+                    experiences for Minecraft using Blockbench,
+                    custom animation and game design.
 
+                </p>
 
+                <a href="#work" class="button">
 
-<main>
+                    Explore Work
 
+                </a>
 
+            </div>
 
-<section class="hero">
 
 
-<div class="hero-content">
+            <div class="hero-preview">
 
+                <div class="viewer">
 
-<h1>
+                    <!-- Three.js renderiza aquí -->
 
-Creating
-<br>
-3D Worlds
+                    <canvas id="viewerCanvas"></canvas>
 
-</h1>
+                    <div class="viewer-gradient"></div>
 
+                    <div class="model-info">
 
+                        <span class="model-name">
 
-<p>
+                            VOID CORE
 
-Creating characters, creatures and
-animated experiences through
-modeling, texturing and motion.
+                        </span>
 
-</p>
+                        <span class="model-type">
 
+                            Legendary Artifact
 
+                        </span>
 
-<a href="#work" class="button">
+                    </div>
 
-Explore Work
+                </div>
 
-</a>
+            </div>
 
+        </section>
 
-</div>
 
 
+        <!-- =========================
+             WORK
+        ========================== -->
 
+        <section id="work" class="section">
 
+            <div class="section-title">
 
+                <span>
+                    Selected Work
+                </span>
 
+                <h2>
+                    Projects
+                </h2>
 
-<div class="hero-preview">
+            </div>
 
 
-<div class="viewer">
 
+            <div class="project-grid">
 
+                <article class="project-card"
+                    data-model="assets/models/void-core.glb"
+                    data-title="VOID CORE"
+                    data-subtitle="Legendary Artifact">
 
-<model-viewer
+                    <div class="project-image">
 
-id="main-model"
+                        <img src="assets/renders/void-core.png" alt="Void Core">
 
-src="assets/models/main.glb"
+                    </div>
 
-camera-controls
+                    <div>
 
-auto-rotate
+                        <h3>
+                            Void Core
+                        </h3>
 
-camera-orbit="0deg 70deg 3m"
+                        <p>
 
-shadow-intensity="1"
+                            Legendary artifact featuring custom geometry,
+                            shaders and animation.
 
-exposure="1"
+                        </p>
 
->
+                        <div class="tags">
 
-</model-viewer>
+                            <span>Modeling</span>
+                            <span>Animation</span>
+                            <span>Effects</span>
 
+                        </div>
 
+                    </div>
 
-<div class="model-info">
+                </article>
 
-VOID CORE
 
-<br>
 
-Legendary Artifact
+                <article class="project-card"
+                    data-model="assets/models/spirit.glb"
+                    data-title="SPIRIT"
+                    data-subtitle="Hostile Creature">
 
-</div>
+                    <div class="project-image">
 
+                        <img src="assets/renders/spirit.png" alt="Spirit">
 
+                    </div>
 
-</div>
+                    <div>
 
+                        <h3>
+                            Spirit Creature
+                        </h3>
 
+                        <p>
 
-</div>
+                            A custom creature created with personality,
+                            smooth movement and unique style.
 
+                        </p>
 
+                        <div class="tags">
 
-</section>
+                            <span>Creature</span>
+                            <span>Rigging</span>
+                            <span>Animation</span>
 
+                        </div>
 
+                    </div>
 
+                </article>
 
 
 
+                <article class="project-card"
+                    data-model="assets/models/boss.glb"
+                    data-title="BOSS"
+                    data-subtitle="Raid Encounter">
 
+                    <div class="project-image">
 
+                        <img src="assets/renders/boss.png" alt="Boss">
 
-<section id="work" class="section">
+                    </div>
 
+                    <div>
 
-<div class="section-title">
+                        <h3>
+                            Boss Collection
+                        </h3>
 
-<span>
-Selected Work
-</span>
+                        <p>
 
-<h2>
-Projects
-</h2>
+                            Massive enemies created for multiplayer
+                            Minecraft experiences.
 
+                        </p>
 
-</div>
+                        <div class="tags">
 
+                            <span>Boss</span>
+                            <span>Game Art</span>
+                            <span>Animation</span>
 
+                        </div>
 
+                    </div>
 
-<div class="project-grid">
+                </article>
 
+            </div>
 
+        </section>
 
-<article class="project-card">
 
 
-<div class="project-image">
+        <!-- =========================
+             ANIMATION
+        ========================== -->
 
-<img src="assets/renders/void-core.png">
+        <section id="animation" class="section">
 
-</div>
+            <div class="section-title">
 
+                <span>
+                    Motion
+                </span>
 
-<div>
+                <h2>
+                    Animation Reel
+                </h2>
 
+            </div>
 
-<h3>
-Void Core
-</h3>
+            <div class="animation-grid">
 
+                <div class="animation-card">
 
-<p>
+                    <img src="assets/animations/idle.gif" alt="Idle">
 
-Legendary artifact created with
-custom modeling, textures and
-animation.
+                    <h3>Idle Animation</h3>
 
-</p>
+                    <p>
+                        Personality through subtle movement.
+                    </p>
 
+                </div>
 
-<div class="tags">
+                <div class="animation-card">
 
-<span>Modeling</span>
+                    <img src="assets/animations/walk.gif" alt="Walk">
 
-<span>Animation</span>
+                    <h3>Walk Cycle</h3>
 
-<span>Effects</span>
+                    <p>
+                        Smooth locomotion and weight.
+                    </p>
 
-</div>
+                </div>
 
+                <div class="animation-card">
 
-</div>
+                    <img src="assets/animations/attack.gif" alt="Attack">
 
+                    <h3>Attack Animation</h3>
 
-</article>
+                    <p>
+                        Fast combat actions and timing.
+                    </p>
 
+                </div>
 
+            </div>
 
+        </section>
 
 
 
-<article class="project-card">
+        <!-- =========================
+             MODELS
+        ========================== -->
 
+        <section id="models" class="section">
 
-<div class="project-image">
+            <div class="section-title">
 
-<img src="assets/renders/spirit.png">
+                <span>
+                    Gallery
+                </span>
 
-</div>
+                <h2>
+                    Models
+                </h2>
 
+            </div>
 
-<div>
+            <div class="gallery">
 
+                <div class="gallery-item">
+                    <img src="assets/models/model1.png" alt="">
+                </div>
 
-<h3>
-Spirit Creature
-</h3>
+                <div class="gallery-item">
+                    <img src="assets/models/model2.png" alt="">
+                </div>
 
+                <div class="gallery-item">
+                    <img src="assets/models/model3.png" alt="">
+                </div>
 
-<p>
+            </div>
 
-A custom creature designed with
-unique style and movement.
+        </section>
 
-</p>
 
 
-<div class="tags">
+        <!-- =========================
+             ABOUT
+        ========================== -->
 
-<span>Creature</span>
+        <section id="about" class="section">
 
-<span>Texture</span>
+            <div class="section-title">
 
-<span>Rigging</span>
+                <span>
+                    About
+                </span>
 
-</div>
+                <h2>
+                    Who I Am
+                </h2>
 
+            </div>
 
-</div>
+            <div class="card">
 
+                <p>
 
-</article>
+                    I'm Haru, a 3D artist specialized in Minecraft content,
+                    focused on creatures, bosses, animations and interactive
+                    experiences.
 
+                </p>
 
+            </div>
 
+        </section>
 
 
 
-<article class="project-card">
+        <!-- =========================
+             CONTACT
+        ========================== -->
 
+        <section id="contact" class="section">
 
-<div class="project-image">
+            <div class="section-title">
 
-<img src="assets/renders/boss.png">
+                <span>
+                    Contact
+                </span>
 
-</div>
+                <h2>
+                    Let's Create
+                </h2>
 
+            </div>
 
-<div>
+            <div class="card">
 
+                <p>
 
-<h3>
-Boss Collection
-</h3>
+                    Available for commissions,
+                    collaborations and creative projects.
 
+                </p>
 
-<p>
+                <div class="contact-links">
 
-Large creatures designed for
-interactive experiences.
+                    <a href="#">Discord</a>
 
-</p>
+                    <a href="#">Email</a>
 
+                    <a href="#">Portfolio</a>
 
-<div class="tags">
+                </div>
 
-<span>Design</span>
+            </div>
 
-<span>Animation</span>
+        </section>
 
-<span>Game Art</span>
+    </main>
 
-</div>
+    <footer>
 
+        © 2026 Haru
 
-</div>
+    </footer>
 
+    <!-- Script principal -->
+    <script src="js/script.js"></script>
 
-</article>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-<section id="animation" class="section">
-
-
-<div class="section-title">
-
-<span>
-Motion
-</span>
-
-<h2>
-Animation Reel
-</h2>
-
-
-</div>
-
-
-
-<div class="animation-grid">
-
-
-
-<div class="animation-card">
-
-<img src="assets/animations/idle.gif">
-
-<h3>
-Idle Animation
-</h3>
-
-<p>
-Creature movement and personality.
-</p>
-
-</div>
-
-
-
-
-<div class="animation-card">
-
-<img src="assets/animations/attack.gif">
-
-<h3>
-Combat Animation
-</h3>
-
-<p>
-Dynamic attacks and actions.
-</p>
-
-</div>
-
-
-
-
-
-<div class="animation-card">
-
-<img src="assets/animations/walk.gif">
-
-<h3>
-Walk Cycle
-</h3>
-
-<p>
-Movement and character expression.
-</p>
-
-</div>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<section id="models" class="section">
-
-
-<div class="section-title">
-
-<span>
-Gallery
-</span>
-
-
-<h2>
-3D Models
-</h2>
-
-
-</div>
-
-
-
-<div class="gallery">
-
-
-<div class="gallery-item">
-
-<img src="assets/models/model1.png">
-
-</div>
-
-
-<div class="gallery-item">
-
-<img src="assets/models/model2.png">
-
-</div>
-
-
-<div class="gallery-item">
-
-<img src="assets/models/model3.png">
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<section id="about" class="section">
-
-
-<div class="section-title">
-
-<span>
-About
-</span>
-
-
-<h2>
-Who I Am
-</h2>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<p>
-
-I'm Haru, a 3D artist focused on
-creating characters, creatures and
-animated worlds.
-
-My goal is transforming ideas into
-memorable visual experiences.
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section id="contact" class="section">
-
-
-<div class="section-title">
-
-<span>
-Contact
-</span>
-
-
-<h2>
-Let's Create
-</h2>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<p>
-
-Available for collaborations,
-commissions and creative projects.
-
-</p>
-
-
-
-<div class="contact-links">
-
-<a href="#">
-Discord
-</a>
-
-
-<a href="#">
-Email
-</a>
-
-
-<a href="#">
-Portfolio
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-</main>
-
-
-
-
-<footer>
-
-© 2026 Haru
-
-</footer>
-
-
-
-
-<script src="js/script.js"></script>
-
+    <!-- Three.js -->
+    <script type="module" src="js/viewer.js"></script>
 
 </body>
 
