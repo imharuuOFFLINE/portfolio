@@ -1,231 +1,194 @@
-// ==========================================================
+//==================================================
 // HARU PORTFOLIO
-// SCRIPT
-// ==========================================================
+// script.js
+//==================================================
 
+const viewer = document.querySelector("#viewer");
 
-// =========================
-// ACTIVE SIDEBAR SECTION
-// =========================
+const cards = document.querySelectorAll(".project-card");
 
+const viewerTitle = document.querySelector("#viewerTitle");
 
-const sections = document.querySelectorAll("section");
-
-const navLinks = document.querySelectorAll(".sidebar nav a");
-
-
-
-function updateActiveSection() {
-
-
-    let current = "";
-
-
-    sections.forEach(section => {
-
-
-        const sectionTop = section.offsetTop - 300;
-
-
-        if (window.scrollY >= sectionTop) {
-
-            current = section.getAttribute("id");
-
-        }
-
-
-    });
+const viewerDescription = document.querySelector("#viewerDescription");
 
 
 
-    navLinks.forEach(link => {
+//==================================================
+// CREATE ANIMATION PANEL
+//==================================================
 
+const animationPanel = document.createElement("div");
 
-        link.classList.remove("active");
+animationPanel.className = "animation-selector";
 
+animationPanel.innerHTML = `
 
-        if(link.getAttribute("href") === "#" + current) {
+<h3>Animations</h3>
 
-            link.classList.add("active");
+<div class="animation-buttons"></div>
 
-        }
+`;
 
+document.querySelector(".viewer").appendChild(animationPanel);
 
-    });
-
-
-}
-
-
-
-window.addEventListener(
-    "scroll",
-    updateActiveSection
-);
+const animationButtons = animationPanel.querySelector(".animation-buttons");
 
 
 
+//==================================================
+// CREATE LOADING
+//==================================================
+
+const loading = document.createElement("div");
+
+loading.className = "viewer-loading";
+
+loading.textContent = "Loading model...";
+
+document.querySelector(".viewer").appendChild(loading);
 
 
-// =========================
-// SMOOTH NAVIGATION
-// =========================
 
+//==================================================
+// LOADING EVENTS
+//==================================================
 
-navLinks.forEach(link => {
+viewer.addEventListener("load", () => {
 
+    loading.classList.remove("visible");
 
-    link.addEventListener(
-        "click",
-        event => {
+    createAnimationButtons();
 
+});
 
-            event.preventDefault();
+viewer.addEventListener("error", () => {
 
+    loading.textContent = "Failed to load model.";
 
-            const target =
-            document.querySelector(
-                link.getAttribute("href")
-            );
-
-
-            if(target){
-
-
-                target.scrollIntoView({
-
-                    behavior:"smooth"
-
-                });
-
-
-            }
-
-
-        }
-
-    );
-
+    loading.classList.add("visible");
 
 });
 
 
 
+//==================================================
+// CHANGE MODEL
+//==================================================
 
+cards.forEach(card => {
 
-// =========================
-// VIEWER PARALLAX
-// =========================
+    card.addEventListener("click", () => {
 
+        cards.forEach(c => c.classList.remove("active"));
 
-const viewer =
-document.querySelector(".viewer");
+        card.classList.add("active");
 
+        loading.textContent = "Loading model...";
 
+        loading.classList.add("visible");
 
-if(viewer){
+        viewer.src = card.dataset.model;
 
+        viewerTitle.textContent = card.dataset.title;
 
-    viewer.addEventListener(
-        "mousemove",
-        event => {
+        viewerDescription.textContent = card.dataset.description;
 
-
-            const rect =
-            viewer.getBoundingClientRect();
-
-
-
-            const x =
-            event.clientX - rect.left;
-
-
-
-            const y =
-            event.clientY - rect.top;
-
-
-
-            const rotateX =
-            ((y / rect.height) - .5) * -8;
-
-
-
-            const rotateY =
-            ((x / rect.width) - .5) * 8;
-
-
-
-            viewer.style.transform = `
-
-                perspective(800px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-
-            `;
-
-
-        }
-
-    );
-
-
-
-    viewer.addEventListener(
-        "mouseleave",
-        () => {
-
-
-            viewer.style.transform = "";
-
-        }
-
-    );
-
-
-}
-
-
-
-
-
-// =========================
-// IMAGE LOADING
-// =========================
-
-
-const images =
-document.querySelectorAll(
-    ".gallery-item img"
-);
-
-
-
-images.forEach(image => {
-
-
-    image.addEventListener(
-        "load",
-        () => {
-
-
-            image.classList.add("loaded");
-
-
-        }
-
-    );
-
+    });
 
 });
 
 
 
+//==================================================
+// CREATE ANIMATION BUTTONS
+//==================================================
+
+function createAnimationButtons(){
+
+    animationButtons.innerHTML = "";
+
+    const animations = viewer.availableAnimations;
+
+    if(!animations || animations.length === 0){
+
+        animationPanel.style.display = "none";
+
+        return;
+
+    }
+
+    animationPanel.style.display = "block";
+
+    animations.forEach((animation,index)=>{
+
+        const button = document.createElement("button");
+
+        button.textContent = animation;
+
+        if(index===0){
+
+            button.classList.add("active");
+
+            viewer.animationName = animation;
+
+        }
+
+        button.addEventListener("click",()=>{
+
+            animationButtons
+                .querySelectorAll("button")
+                .forEach(b=>b.classList.remove("active"));
+
+            button.classList.add("active");
+
+            viewer.animationName = animation;
+
+        });
+
+        animationButtons.appendChild(button);
+
+    });
+
+}
 
 
-// =========================
-// INITIAL CHECK
-// =========================
+
+//==================================================
+// AUTO ROTATION
+//==================================================
+
+viewer.autoRotate = true;
+
+viewer.rotationPerSecond = "18deg";
 
 
-updateActiveSection();
+
+//==================================================
+// PAUSE AUTO ROTATE
+//==================================================
+
+viewer.addEventListener("camera-change", () => {
+
+    viewer.autoRotate = false;
+
+    clearTimeout(window.rotateTimeout);
+
+    window.rotateTimeout = setTimeout(() => {
+
+        viewer.autoRotate = true;
+
+    },3000);
+
+});
+
+
+
+//==================================================
+// DEFAULT MODEL
+//==================================================
+
+window.addEventListener("load",()=>{
+
+    loading.classList.add("visible");
+
+});
