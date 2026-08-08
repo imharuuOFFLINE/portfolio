@@ -1,194 +1,341 @@
-//==================================================
-// HARU PORTFOLIO
-// script.js
-//==================================================
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
-const viewer = document.querySelector("#viewer");
+const navItems = document.querySelectorAll(".nav-item");
+const pages = document.querySelectorAll(".page");
 
-const cards = document.querySelectorAll(".project-card");
-
-const viewerTitle = document.querySelector("#viewerTitle");
-
-const viewerDescription = document.querySelector("#viewerDescription");
+const pageTitle = document.getElementById("pageTitle");
 
 
-
-//==================================================
-// CREATE ANIMATION PANEL
-//==================================================
-
-const animationPanel = document.createElement("div");
-
-animationPanel.className = "animation-selector";
-
-animationPanel.innerHTML = `
-
-<h3>Animations</h3>
-
-<div class="animation-buttons"></div>
-
-`;
-
-document.querySelector(".viewer").appendChild(animationPanel);
-
-const animationButtons = animationPanel.querySelector(".animation-buttons");
+const pageNames = {
+    home: "OVERVIEW",
+    projects: "PROJECTS",
+    models: "3D MODELS",
+    animations: "ANIMATIONS",
+    about: "ABOUT",
+    contact: "CONTACT"
+};
 
 
+function openPage(pageName) {
 
-//==================================================
-// CREATE LOADING
-//==================================================
-
-const loading = document.createElement("div");
-
-loading.className = "viewer-loading";
-
-loading.textContent = "Loading model...";
-
-document.querySelector(".viewer").appendChild(loading);
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
 
 
+    const targetPage = document.getElementById(pageName);
 
-//==================================================
-// LOADING EVENTS
-//==================================================
+    if (!targetPage) {
+        return;
+    }
 
-viewer.addEventListener("load", () => {
-
-    loading.classList.remove("visible");
-
-    createAnimationButtons();
-
-});
-
-viewer.addEventListener("error", () => {
-
-    loading.textContent = "Failed to load model.";
-
-    loading.classList.add("visible");
-
-});
+    targetPage.classList.add("active");
 
 
+    navItems.forEach(item => {
 
-//==================================================
-// CHANGE MODEL
-//==================================================
+        item.classList.remove("active");
 
-cards.forEach(card => {
+        if (item.dataset.page === pageName) {
+            item.classList.add("active");
+        }
 
-    card.addEventListener("click", () => {
+    });
 
-        cards.forEach(c => c.classList.remove("active"));
 
-        card.classList.add("active");
+    pageTitle.textContent =
+        pageNames[pageName] || pageName.toUpperCase();
 
-        loading.textContent = "Loading model...";
 
-        loading.classList.add("visible");
+    const container =
+        document.querySelector(".page-container");
 
-        viewer.src = card.dataset.model;
+    container.scrollTop = 0;
+}
 
-        viewerTitle.textContent = card.dataset.title;
 
-        viewerDescription.textContent = card.dataset.description;
+/* Sidebar */
+
+navItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const page =
+            item.dataset.page;
+
+        openPage(page);
 
     });
 
 });
 
 
+/* Buttons that navigate */
 
-//==================================================
-// CREATE ANIMATION BUTTONS
-//==================================================
+document
+    .querySelectorAll("[data-page-button]")
+    .forEach(button => {
 
-function createAnimationButtons(){
+        button.addEventListener("click", () => {
 
-    animationButtons.innerHTML = "";
-
-    const animations = viewer.availableAnimations;
-
-    if(!animations || animations.length === 0){
-
-        animationPanel.style.display = "none";
-
-        return;
-
-    }
-
-    animationPanel.style.display = "block";
-
-    animations.forEach((animation,index)=>{
-
-        const button = document.createElement("button");
-
-        button.textContent = animation;
-
-        if(index===0){
-
-            button.classList.add("active");
-
-            viewer.animationName = animation;
-
-        }
-
-        button.addEventListener("click",()=>{
-
-            animationButtons
-                .querySelectorAll("button")
-                .forEach(b=>b.classList.remove("active"));
-
-            button.classList.add("active");
-
-            viewer.animationName = animation;
+            openPage(
+                button.dataset.pageButton
+            );
 
         });
 
-        animationButtons.appendChild(button);
+    });
+
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+const clock =
+    document.getElementById("clock");
+
+
+function updateClock() {
+
+    const now = new Date();
+
+    const hours =
+        String(now.getHours()).padStart(2, "0");
+
+    const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2, "0");
+
+
+    clock.textContent =
+        `${hours}:${minutes}:${seconds}`;
+}
+
+
+updateClock();
+
+setInterval(updateClock, 1000);
+
+
+/* =========================================================
+   MAIN MODEL VIEWER
+========================================================= */
+
+const mainModel =
+    document.getElementById("mainModel");
+
+const modelName =
+    document.getElementById("modelName");
+
+const assetItems =
+    document.querySelectorAll(".asset-item");
+
+
+assetItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        assetItems.forEach(asset => {
+            asset.classList.remove("active");
+        });
+
+        item.classList.add("active");
+
+
+        const model =
+            item.dataset.model;
+
+        const name =
+            item.dataset.name;
+
+
+        mainModel.src = model;
+
+        modelName.textContent = name;
 
     });
+
+});
+
+
+/* =========================================================
+   ANIMATION VIEWER
+========================================================= */
+
+const animationModel =
+    document.getElementById("animationModel");
+
+const playAnimationButton =
+    document.getElementById("playAnimation");
+
+
+playAnimationButton.addEventListener(
+    "click",
+    () => {
+
+        if (!animationModel) {
+            return;
+        }
+
+
+        if (
+            animationModel.availableAnimations &&
+            animationModel.availableAnimations.length > 0
+        ) {
+
+            animationModel.animationName =
+                animationModel.availableAnimations[0];
+
+            animationModel.play();
+
+        } else {
+
+            console.log(
+                "Este modelo no contiene animaciones."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PROJECT ROWS
+========================================================= */
+
+const projectRows =
+    document.querySelectorAll(".project-row");
+
+
+projectRows.forEach(row => {
+
+    row.addEventListener("click", () => {
+
+        const project =
+            row.dataset.project;
+
+
+        console.log(
+            "Opening project:",
+            project
+        );
+
+
+        /*
+         * Más adelante aquí podremos abrir
+         * un editor/página específica del proyecto.
+         */
+
+        openPage("projects");
+
+    });
+
+});
+
+
+/* =========================================================
+   MODEL VIEWER EVENTS
+========================================================= */
+
+const heroModel =
+    document.getElementById("heroModel");
+
+
+if (heroModel) {
+
+    heroModel.addEventListener(
+        "load",
+        () => {
+
+            console.log(
+                "Featured model loaded."
+            );
+
+        }
+    );
+
+
+    heroModel.addEventListener(
+        "error",
+        event => {
+
+            console.error(
+                "Could not load featured model.",
+                event
+            );
+
+        }
+    );
 
 }
 
 
+/* =========================================================
+   MODEL DEBUG INFORMATION
+========================================================= */
 
-//==================================================
-// AUTO ROTATION
-//==================================================
+if (mainModel) {
 
-viewer.autoRotate = true;
+    mainModel.addEventListener(
+        "load",
+        () => {
 
-viewer.rotationPerSecond = "18deg";
-
-
-
-//==================================================
-// PAUSE AUTO ROTATE
-//==================================================
-
-viewer.addEventListener("camera-change", () => {
-
-    viewer.autoRotate = false;
-
-    clearTimeout(window.rotateTimeout);
-
-    window.rotateTimeout = setTimeout(() => {
-
-        viewer.autoRotate = true;
-
-    },3000);
-
-});
+            console.log(
+                "Loaded model:",
+                mainModel.src
+            );
 
 
+            console.log(
+                "Available animations:",
+                mainModel.availableAnimations
+            );
 
-//==================================================
-// DEFAULT MODEL
-//==================================================
+        }
+    );
 
-window.addEventListener("load",()=>{
+}
 
-    loading.classList.add("visible");
 
-});
+/* =========================================================
+   KEYBOARD SHORTCUTS
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        /*
+         * 1 = Overview
+         * 2 = Projects
+         * 3 = Models
+         * 4 = Animations
+         * 5 = About
+         * 6 = Contact
+         */
+
+        const pagesByKey = {
+            "1": "home",
+            "2": "projects",
+            "3": "models",
+            "4": "animations",
+            "5": "about",
+            "6": "contact"
+        };
+
+
+        const target =
+            pagesByKey[event.key];
+
+
+        if (target) {
+            openPage(target);
+        }
+
+    }
+);
