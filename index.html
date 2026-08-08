@@ -1,487 +1,1049 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Haru | 3D Artist & Animator</title>
-
-    <meta name="description"
-        content="Portfolio of Haru, Minecraft 3D Artist specialized in modeling and animation.">
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <title>Haru / 3D Artist</title>
 
     <!-- Model Viewer -->
-    <script type="module"
-        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+    <script
+        type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
     </script>
 
+    <!-- Iconos -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="background"></div>
+    <div class="app">
 
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
+        <!-- =========================================================
+             SIDEBAR
+        ========================================================== -->
 
-    <aside class="sidebar">
+        <aside class="sidebar">
 
-        <div class="logo">
-            HARU
-        </div>
+            <div class="brand">
+                <div class="brand-icon">H</div>
 
-        <nav>
-
-            <a href="#work">Work</a>
-
-            <a href="#animation">Animations</a>
-
-            <a href="#about">About</a>
-
-            <a href="#contact">Contact</a>
-
-        </nav>
-
-        <div class="status">
-
-            Minecraft
-            <br>
-            3D Artist
-
-        </div>
-
-    </aside>
+                <div class="brand-text">
+                    <strong>HARU</strong>
+                    <span>3D WORKSPACE</span>
+                </div>
+            </div>
 
 
+            <div class="sidebar-section">
 
+                <div class="section-title">
+                    WORKSPACE
+                </div>
 
+                <button class="nav-item active" data-page="home">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Overview</span>
+                    <small>01</small>
+                </button>
 
-    <main>
+                <button class="nav-item" data-page="projects">
+                    <i class="fa-solid fa-cube"></i>
+                    <span>Projects</span>
+                    <small>02</small>
+                </button>
 
-        <!-- =========================
-             HERO
-        ========================== -->
+                <button class="nav-item" data-page="models">
+                    <i class="fa-solid fa-shapes"></i>
+                    <span>Models</span>
+                    <small>03</small>
+                </button>
 
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <span class="hero-tag">
-
-                    Minecraft • Blockbench • Animation
-
-                </span>
-
-                <h1>
-
-                    Creating
-                    <br>
-                    Digital Worlds
-
-                </h1>
-
-                <p>
-
-                    I create creatures, bosses, items and animated
-                    experiences for Minecraft using Blockbench.
-
-                </p>
-
-                <a href="#work" class="button">
-
-                    Explore Work
-
-                </a>
+                <button class="nav-item" data-page="animations">
+                    <i class="fa-solid fa-film"></i>
+                    <span>Animations</span>
+                    <small>04</small>
+                </button>
 
             </div>
 
 
+            <div class="sidebar-section">
 
-            <div class="hero-preview">
+                <div class="section-title">
+                    INFORMATION
+                </div>
 
-                <div class="viewer">
+                <button class="nav-item" data-page="about">
+                    <i class="fa-solid fa-user"></i>
+                    <span>About</span>
+                    <small>05</small>
+                </button>
 
-                    <model-viewer
+                <button class="nav-item" data-page="contact">
+                    <i class="fa-solid fa-message"></i>
+                    <span>Contact</span>
+                    <small>06</small>
+                </button>
 
-                        id="viewer"
-
-                        src="assets/models/void-core.glb"
-
-                        camera-controls
-
-                        auto-rotate
-
-                        autoplay
-
-                        interaction-prompt="none"
-
-                        shadow-intensity="1"
-
-                        exposure="1"
-
-                        environment-image="neutral"
-
-                        tone-mapping="aces"
-
-                    >
-
-                    </model-viewer>
+            </div>
 
 
+            <div class="sidebar-bottom">
 
-                    <div class="viewer-info">
+                <div class="status">
+                    <span class="status-dot"></span>
 
-                        <h2 id="viewerTitle">
+                    <div>
+                        <strong>ONLINE</strong>
+                        <small>WORKSPACE READY</small>
+                    </div>
+                </div>
 
-                            VOID CORE
+                <div class="version">
+                    HARU.PORTFOLIO / 1.0.0
+                </div>
 
+            </div>
+
+        </aside>
+
+
+        <!-- =========================================================
+             MAIN
+        ========================================================== -->
+
+        <main class="main">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div class="breadcrumb">
+                    <span>WORKSPACE</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <strong id="pageTitle">OVERVIEW</strong>
+                </div>
+
+                <div class="topbar-right">
+
+                    <span class="connection">
+                        <span></span>
+                        LOCAL
+                    </span>
+
+                    <div class="topbar-line"></div>
+
+                    <span class="clock" id="clock">
+                        00:00:00
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <!-- =====================================================
+                 PAGE CONTAINER
+            ====================================================== -->
+
+            <div class="page-container">
+
+
+                <!-- =================================================
+                     HOME
+                ================================================== -->
+
+                <section class="page active" id="home">
+
+                    <div class="hero-grid">
+
+                        <div class="hero-info">
+
+                            <div class="eyebrow">
+                                <span></span>
+                                3D ARTIST / ANIMATOR
+                            </div>
+
+                            <h1>
+                                HARU<span>.</span>
+                            </h1>
+
+                            <p class="hero-description">
+                                Creating Minecraft models, animations,
+                                textures and interactive experiences.
+                            </p>
+
+                            <div class="hero-buttons">
+
+                                <button
+                                    class="primary-button"
+                                    data-page-button="projects">
+                                    VIEW PROJECTS
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+
+                                <button
+                                    class="secondary-button"
+                                    data-page-button="about">
+                                    ABOUT ME
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- HERO MODEL -->
+
+                        <div class="hero-model panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <span class="panel-label">
+                                        VIEWPORT
+                                    </span>
+
+                                    <strong>
+                                        FEATURED MODEL
+                                    </strong>
+                                </div>
+
+                                <div class="panel-tools">
+                                    <span>3D</span>
+                                    <span>01</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="model-container">
+
+                                <model-viewer
+                                    id="heroModel"
+                                    src="assets/models/void.glb"
+                                    alt="Featured 3D model"
+                                    camera-controls
+                                    touch-action="pan-y"
+                                    shadow-intensity="0.8"
+                                    exposure="1"
+                                    camera-orbit="45deg 70deg 3m"
+                                    interaction-prompt="none">
+
+                                </model-viewer>
+
+                                <div class="viewport-grid"></div>
+
+                                <div class="viewport-info">
+                                    <span>ROTATE</span>
+                                    <span>ZOOM</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATS -->
+
+                    <div class="stats-grid">
+
+                        <div class="stat panel">
+
+                            <span class="stat-label">
+                                PROJECTS
+                            </span>
+
+                            <strong>
+                                12
+                            </strong>
+
+                            <small>
+                                CREATED
+                            </small>
+
+                        </div>
+
+
+                        <div class="stat panel">
+
+                            <span class="stat-label">
+                                MODELS
+                            </span>
+
+                            <strong>
+                                24
+                            </strong>
+
+                            <small>
+                                3D ASSETS
+                            </small>
+
+                        </div>
+
+
+                        <div class="stat panel">
+
+                            <span class="stat-label">
+                                ANIMATIONS
+                            </span>
+
+                            <strong>
+                                38
+                            </strong>
+
+                            <small>
+                                ANIMATED CLIPS
+                            </small>
+
+                        </div>
+
+
+                        <div class="stat panel">
+
+                            <span class="stat-label">
+                                SPECIALTY
+                            </span>
+
+                            <strong>
+                                MC
+                            </strong>
+
+                            <small>
+                                MINECRAFT
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RECENT PROJECT -->
+
+                    <div class="section-block">
+
+                        <div class="section-heading">
+
+                            <div>
+                                <span>RECENT WORK</span>
+                                <h2>PROJECT FILES</h2>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                data-page-button="projects">
+                                VIEW ALL
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="project-list">
+
+                            <button
+                                class="project-row"
+                                data-project="reliquias">
+
+                                <div class="project-number">
+                                    01
+                                </div>
+
+                                <div class="project-preview">
+                                    <i class="fa-solid fa-cube"></i>
+                                </div>
+
+                                <div class="project-name">
+
+                                    <strong>
+                                        RELIQUIAS Y CAOS
+                                    </strong>
+
+                                    <span>
+                                        Minecraft Addon
+                                    </span>
+
+                                </div>
+
+                                <div class="project-type">
+                                    MODEL / ANIMATION
+                                </div>
+
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+
+                            </button>
+
+
+                            <button
+                                class="project-row"
+                                data-project="void">
+
+                                <div class="project-number">
+                                    02
+                                </div>
+
+                                <div class="project-preview">
+                                    <i class="fa-solid fa-circle-nodes"></i>
+                                </div>
+
+                                <div class="project-name">
+
+                                    <strong>
+                                        VOID CORE
+                                    </strong>
+
+                                    <span>
+                                        Minecraft Entity
+                                    </span>
+
+                                </div>
+
+                                <div class="project-type">
+                                    MODEL / VFX
+                                </div>
+
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+
+                            </button>
+
+
+                            <button
+                                class="project-row"
+                                data-project="spirit">
+
+                                <div class="project-number">
+                                    03
+                                </div>
+
+                                <div class="project-preview">
+                                    <i class="fa-solid fa-ghost"></i>
+                                </div>
+
+                                <div class="project-name">
+
+                                    <strong>
+                                        SPIRIT
+                                    </strong>
+
+                                    <span>
+                                        Minecraft Entity
+                                    </span>
+
+                                </div>
+
+                                <div class="project-type">
+                                    MODEL / AI / ANIMATION
+                                </div>
+
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     PROJECTS
+                ================================================== -->
+
+                <section class="page" id="projects">
+
+                    <div class="page-heading">
+
+                        <div>
+                            <span>WORKSPACE / PROJECTS</span>
+
+                            <h1>
+                                PROJECTS
+                            </h1>
+                        </div>
+
+                        <div class="page-count">
+                            03 FILES
+                        </div>
+
+                    </div>
+
+
+                    <div class="projects-grid">
+
+                        <article class="project-card panel">
+
+                            <div class="project-card-top">
+
+                                <span>
+                                    PROJECT_001
+                                </span>
+
+                                <span class="project-status">
+                                    COMPLETED
+                                </span>
+
+                            </div>
+
+
+                            <div class="project-card-model">
+
+                                <model-viewer
+                                    src="assets/models/golem.glb"
+                                    alt="Reliquias y Caos model"
+                                    camera-controls
+                                    disable-pan
+                                    shadow-intensity="0.6"
+                                    camera-orbit="30deg 70deg 3m">
+                                </model-viewer>
+
+                            </div>
+
+
+                            <div class="project-card-info">
+
+                                <h2>
+                                    RELIQUIAS Y CAOS
+                                </h2>
+
+                                <p>
+                                    Minecraft addon focused on
+                                    custom entities, bosses and
+                                    animated models.
+                                </p>
+
+                                <div class="tags">
+
+                                    <span>BLOCKBENCH</span>
+                                    <span>ANIMATION</span>
+                                    <span>MINECRAFT</span>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="project-card panel">
+
+                            <div class="project-card-top">
+
+                                <span>
+                                    PROJECT_002
+                                </span>
+
+                                <span class="project-status">
+                                    COMPLETED
+                                </span>
+
+                            </div>
+
+
+                            <div class="project-card-model">
+
+                                <model-viewer
+                                    src="assets/models/void.glb"
+                                    alt="Void Core model"
+                                    camera-controls
+                                    disable-pan
+                                    shadow-intensity="0.4"
+                                    camera-orbit="45deg 65deg 3m">
+                                </model-viewer>
+
+                            </div>
+
+
+                            <div class="project-card-info">
+
+                                <h2>
+                                    VOID CORE
+                                </h2>
+
+                                <p>
+                                    Legendary Minecraft core
+                                    with custom animations
+                                    and interactive behavior.
+                                </p>
+
+                                <div class="tags">
+
+                                    <span>BLOCKBENCH</span>
+                                    <span>GEO</span>
+                                    <span>VFX</span>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="project-card panel">
+
+                            <div class="project-card-top">
+
+                                <span>
+                                    PROJECT_003
+                                </span>
+
+                                <span class="project-status">
+                                    IN DEVELOPMENT
+                                </span>
+
+                            </div>
+
+
+                            <div class="project-card-model">
+
+                                <model-viewer
+                                    src="assets/models/spirit.glb"
+                                    alt="Spirit model"
+                                    camera-controls
+                                    disable-pan
+                                    shadow-intensity="0.5"
+                                    camera-orbit="25deg 70deg 3m">
+                                </model-viewer>
+
+                            </div>
+
+
+                            <div class="project-card-info">
+
+                                <h2>
+                                    SPIRIT
+                                </h2>
+
+                                <p>
+                                    Custom Minecraft entity with
+                                    animations and hostile AI.
+                                </p>
+
+                                <div class="tags">
+
+                                    <span>ENTITY</span>
+                                    <span>AI</span>
+                                    <span>ANIMATION</span>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     MODELS
+                ================================================== -->
+
+                <section class="page" id="models">
+
+                    <div class="page-heading">
+
+                        <div>
+                            <span>WORKSPACE / ASSETS</span>
+
+                            <h1>
+                                3D MODELS
+                            </h1>
+                        </div>
+
+                    </div>
+
+
+                    <div class="models-layout">
+
+                        <div class="large-model panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <span class="panel-label">
+                                        MODEL VIEWER
+                                    </span>
+
+                                    <strong id="modelName">
+                                        VOID CORE
+                                    </strong>
+                                </div>
+
+                                <span class="model-format">
+                                    GLB
+                                </span>
+
+                            </div>
+
+
+                            <model-viewer
+                                id="mainModel"
+                                src="assets/models/void.glb"
+                                alt="3D model"
+                                camera-controls
+                                shadow-intensity="0.5"
+                                exposure="1"
+                                camera-orbit="35deg 70deg 3m">
+                            </model-viewer>
+
+                        </div>
+
+
+                        <div class="asset-list panel">
+
+                            <div class="panel-header">
+                                <strong>
+                                    ASSETS
+                                </strong>
+
+                                <span>
+                                    03
+                                </span>
+                            </div>
+
+
+                            <button
+                                class="asset-item active"
+                                data-model="assets/models/void.glb"
+                                data-name="VOID CORE">
+
+                                <span class="asset-icon">
+                                    <i class="fa-solid fa-circle-nodes"></i>
+                                </span>
+
+                                <span>
+                                    <strong>void.glb</strong>
+                                    <small>ENTITY</small>
+                                </span>
+
+                                <i class="fa-solid fa-chevron-right"></i>
+
+                            </button>
+
+
+                            <button
+                                class="asset-item"
+                                data-model="assets/models/spirit.glb"
+                                data-name="SPIRIT">
+
+                                <span class="asset-icon">
+                                    <i class="fa-solid fa-ghost"></i>
+                                </span>
+
+                                <span>
+                                    <strong>spirit.glb</strong>
+                                    <small>ENTITY</small>
+                                </span>
+
+                                <i class="fa-solid fa-chevron-right"></i>
+
+                            </button>
+
+
+                            <button
+                                class="asset-item"
+                                data-model="assets/models/golem.glb"
+                                data-name="GOLEM">
+
+                                <span class="asset-icon">
+                                    <i class="fa-solid fa-cube"></i>
+                                </span>
+
+                                <span>
+                                    <strong>golem.glb</strong>
+                                    <small>BOSS</small>
+                                </span>
+
+                                <i class="fa-solid fa-chevron-right"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     ANIMATIONS
+                ================================================== -->
+
+                <section class="page" id="animations">
+
+                    <div class="page-heading">
+
+                        <div>
+                            <span>WORKSPACE / MOTION</span>
+
+                            <h1>
+                                ANIMATIONS
+                            </h1>
+                        </div>
+
+                    </div>
+
+
+                    <div class="animation-panel panel">
+
+                        <div class="animation-header">
+
+                            <div>
+                                <span>ANIMATION EDITOR</span>
+                                <strong id="animationModelName">
+                                    VOID CORE
+                                </strong>
+                            </div>
+
+                            <button id="playAnimation">
+                                <i class="fa-solid fa-play"></i>
+                                PLAY
+                            </button>
+
+                        </div>
+
+
+                        <div class="animation-viewport">
+
+                            <model-viewer
+                                id="animationModel"
+                                src="assets/models/void.glb"
+                                alt="Animated 3D model"
+                                camera-controls
+                                shadow-intensity="0.5"
+                                autoplay
+                                camera-orbit="35deg 70deg 3m">
+                            </model-viewer>
+
+                        </div>
+
+
+                        <div class="timeline">
+
+                            <div class="timeline-time">
+                                00:00
+                            </div>
+
+                            <div class="timeline-track">
+
+                                <div class="timeline-line"></div>
+
+                                <div class="timeline-marker" style="left: 10%;">
+                                    <span>idle</span>
+                                </div>
+
+                                <div class="timeline-marker" style="left: 42%;">
+                                    <span>claim</span>
+                                </div>
+
+                                <div class="timeline-marker" style="left: 73%;">
+                                    <span>idle</span>
+                                </div>
+
+                            </div>
+
+                            <div class="timeline-time">
+                                00:10
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     ABOUT
+                ================================================== -->
+
+                <section class="page" id="about">
+
+                    <div class="page-heading">
+
+                        <div>
+                            <span>INFORMATION / PROFILE</span>
+
+                            <h1>
+                                ABOUT
+                            </h1>
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-grid">
+
+                        <div class="about-main panel">
+
+                            <span class="panel-label">
+                                USER PROFILE
+                            </span>
+
+                            <h2>
+                                HARU
+                            </h2>
+
+                            <p>
+                                3D artist focused on Minecraft,
+                                specializing in modeling,
+                                texturing and animation.
+                            </p>
+
+                            <p>
+                                Most of my work starts in Blockbench
+                                and evolves into complete Minecraft
+                                experiences through custom entities,
+                                animations and addons.
+                            </p>
+
+                        </div>
+
+
+                        <div class="skills panel">
+
+                            <span class="panel-label">
+                                SKILLS
+                            </span>
+
+                            <div class="skill">
+                                <span>BLOCKBENCH</span>
+                                <div><i style="width: 95%;"></i></div>
+                            </div>
+
+                            <div class="skill">
+                                <span>3D MODELING</span>
+                                <div><i style="width: 90%;"></i></div>
+                            </div>
+
+                            <div class="skill">
+                                <span>TEXTURING</span>
+                                <div><i style="width: 85%;"></i></div>
+                            </div>
+
+                            <div class="skill">
+                                <span>ANIMATION</span>
+                                <div><i style="width: 85%;"></i></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     CONTACT
+                ================================================== -->
+
+                <section class="page" id="contact">
+
+                    <div class="page-heading">
+
+                        <div>
+                            <span>INFORMATION / CONNECTION</span>
+
+                            <h1>
+                                CONTACT
+                            </h1>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-panel panel">
+
+                        <span class="panel-label">
+                            CONNECTION
+                        </span>
+
+                        <h2>
+                            LET'S CREATE SOMETHING.
                         </h2>
 
-                        <p id="viewerDescription">
-
-                            Legendary Artifact
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-
-
-        <!-- =========================
-             PROJECTS
-        ========================== -->
-
-        <section id="work" class="section">
-
-            <div class="section-title">
-
-                <span>
-
-                    Portfolio
-
-                </span>
-
-                <h2>
-
-                    Featured Projects
-
-                </h2>
-
-            </div>
-
-
-
-            <div class="project-grid">
-
-
-
-                <article
-
-                    class="project-card active"
-
-                    data-model="assets/models/void-core.glb"
-
-                    data-title="VOID CORE"
-
-                    data-description="Legendary Artifact"
-
-                >
-
-                    <div class="project-image">
-
-                        <img src="assets/renders/void-core.png">
-
-                    </div>
-
-                    <div>
-
-                        <h3>
-
-                            Void Core
-
-                        </h3>
-
                         <p>
-
-                            Legendary Minecraft artifact featuring custom
-                            modeling, textures and animations.
-
+                            For commissions, collaborations
+                            or project inquiries.
                         </p>
 
-                    </div>
 
-                </article>
+                        <div class="contact-list">
+
+                            <a href="#" class="contact-item">
+
+                                <i class="fa-brands fa-discord"></i>
+
+                                <span>
+                                    <small>DISCORD</small>
+                                    <strong>HARU</strong>
+                                </span>
+
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                            </a>
 
 
+                            <a href="#" class="contact-item">
 
+                                <i class="fa-brands fa-github"></i>
 
+                                <span>
+                                    <small>GITHUB</small>
+                                    <strong>HARU</strong>
+                                </span>
 
-                <article
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
-                    class="project-card"
+                            </a>
 
-                    data-model="assets/models/spirit.glb"
-
-                    data-title="SPIRIT"
-
-                    data-description="Hostile Creature"
-
-                >
-
-                    <div class="project-image">
-
-                        <img src="assets/renders/spirit.png">
-
-                    </div>
-
-                    <div>
-
-                        <h3>
-
-                            Spirit Creature
-
-                        </h3>
-
-                        <p>
-
-                            Animated custom mob designed for
-                            Minecraft Bedrock.
-
-                        </p>
+                        </div>
 
                     </div>
 
-                </article>
-
-
-
-
-
-                <article
-
-                    class="project-card"
-
-                    data-model="assets/models/boss.glb"
-
-                    data-title="GOLEM"
-
-                    data-description="Raid Boss"
-
-                >
-
-                    <div class="project-image">
-
-                        <img src="assets/renders/boss.png">
-
-                    </div>
-
-                    <div>
-
-                        <h3>
-
-                            Iron Boss
-
-                        </h3>
-
-                        <p>
-
-                            Large boss created for multiplayer
-                            Minecraft experiences.
-
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-
-
-
-        <!-- =========================
-             ANIMATIONS
-        ========================== -->
-
-        <section id="animation" class="section">
-
-            <div class="section-title">
-
-                <span>
-
-                    Motion
-
-                </span>
-
-                <h2>
-
-                    Animation Showcase
-
-                </h2>
+                </section>
 
             </div>
 
 
+            <!-- =====================================================
+                 BOTTOM STATUS BAR
+            ====================================================== -->
 
-            <div class="animation-grid">
+            <footer class="statusbar">
 
-                <div class="animation-card">
-
-                    <img src="assets/animations/idle.gif">
-
-                    <h3>
-
-                        Idle
-
-                    </h3>
-
+                <div>
+                    <span class="statusbar-dot"></span>
+                    SYSTEM READY
                 </div>
 
-
-
-                <div class="animation-card">
-
-                    <img src="assets/animations/walk.gif">
-
-                    <h3>
-
-                        Walk
-
-                    </h3>
-
+                <div>
+                    3D ENGINE / MODEL-VIEWER
                 </div>
 
-
-
-                <div class="animation-card">
-
-                    <img src="assets/animations/attack.gif">
-
-                    <h3>
-
-                        Attack
-
-                    </h3>
-
+                <div>
+                    HARU.WORKSPACE
                 </div>
 
-            </div>
+            </footer>
 
-        </section>
+        </main>
 
-
-
-
-
-        <!-- =========================
-             ABOUT
-        ========================== -->
-
-        <section id="about" class="section">
-
-            <div class="section-title">
-
-                <span>
-
-                    About
-
-                </span>
-
-                <h2>
-
-                    Who I Am
-
-                </h2>
-
-            </div>
-
-            <div class="card">
-
-                <p>
-
-                    Minecraft 3D artist specialized in Blockbench,
-                    animation and game-ready assets.
-
-                </p>
-
-            </div>
-
-        </section>
+    </div>
 
 
-
-
-
-        <!-- =========================
-             CONTACT
-        ========================== -->
-
-        <section id="contact" class="section">
-
-            <div class="section-title">
-
-                <span>
-
-                    Contact
-
-                </span>
-
-                <h2>
-
-                    Let's Work Together
-
-                </h2>
-
-            </div>
-
-            <div class="card">
-
-                <p>
-
-                    Available for commissions and collaborations.
-
-                </p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <footer>
-
-        © 2026 Haru
-
-    </footer>
-
-
-
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
